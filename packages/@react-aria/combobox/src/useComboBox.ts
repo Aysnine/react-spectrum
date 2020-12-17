@@ -70,7 +70,7 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
     inputRef,
     listBoxRef,
     keyboardDelegate,
-    completionMode = 'suggest',
+    // completionMode = 'suggest',
     isReadOnly,
     isDisabled
   } = props;
@@ -301,7 +301,8 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
       role: 'combobox',
       'aria-expanded': menuTriggerProps['aria-expanded'],
       'aria-controls': state.isOpen ? menuProps.id : undefined,
-      'aria-autocomplete': completionMode === 'suggest' ? 'list' : 'both',
+      // TODO: readd proper logic for completionMode = complete (aria-autocomplete: both)
+      'aria-autocomplete': 'list',
       'aria-activedescendant': focusedItem ? getItemId(state, focusedItem.key) : undefined,
       onTouchEnd
     }),
